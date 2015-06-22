@@ -3,6 +3,7 @@ import urllib
 import re
 import datetime
 import threading
+import multiprocessing
 
 #根据文章url来获取文章内容
 def url_save_article(url):
@@ -59,8 +60,15 @@ def source_list_analysis(all_blog_list_address_url):
         else:
             pass
     for address in address_list:
-        blog_list_analysis(address)
+        #blog_list_analysis(address)
+        proc = multiprocessing.Process(target = blog_list_analysis, args = (address,))
+        process.append(proc)
+    for p in process:
+        p.start()
+    for p in process:
+        p.join()
 
+process = []
 starttime = datetime.datetime.now()
 source_list_url = 'http://blog.sina.com.cn/s/articlelist_1191258123_0_1.html'
 source_list_analysis(source_list_url)

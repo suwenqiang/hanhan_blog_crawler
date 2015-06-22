@@ -1,2 +1,5 @@
 # hanhan_blog_crawler
 韩寒新浪博客爬虫
+文件blog_web_crawler.py是单进程单线程，在树莓派上耗时：184s
+文件blog_web_crawler_thread.py是多线程的.在树莓派上耗时：65s
+文件blog_web_crawlber_process.py是多进程的，在树莓派上耗时:74s

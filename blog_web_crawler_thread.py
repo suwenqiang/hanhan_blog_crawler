@@ -59,8 +59,15 @@ def source_list_analysis(all_blog_list_address_url):
         else:
             pass
     for address in address_list:
-        blog_list_analysis(address)
+        #blog_list_analysis(address)
+        t1 = threading.Thread(target = blog_list_analysis, args = (address,))
+        threads.append(t1)
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join()
 
+threads = []
 starttime = datetime.datetime.now()
 source_list_url = 'http://blog.sina.com.cn/s/articlelist_1191258123_0_1.html'
 source_list_analysis(source_list_url)
